@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+
+source /dev/stdin <<< "$FUNCTIONS_FILE_PATH"
+color
+verb_ip6
+catch_errors
+setting_up_container
+network_check
+update_os
+
+msg_info "Installing Dependencies"
+$STD apt-get install -y curl
+$STD apt-get install -y sudo
+$STD apt-get install -y vimfm
+$STD apt-get install -y vim
+$STD apt-get install -y neofetch
+$STD apt-get install -y git
+$STD apt-get install -y tmux
+
+msg_ok "Installed curl sudo git vim vifm tmux neofetch"
+
+msg_info "Installing "
+
+$STD apt-get update
+
+msg_ok "Installed stuff"
+
+motd_ssh
+customize
+
+msg_info "Cleaning up"
+$STD apt-get -y autoremove
+$STD apt-get -y autoclean
+msg_ok "Cleaned"
